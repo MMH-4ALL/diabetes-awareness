@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #0a1a33;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(18, 179, 165, 0.25);
+  color: #0a1a33;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f7fb;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f427a;
+  border-radius: 999px;
+  border: 2px solid #f4f7fb;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #12b3a5;
+}
+
+/* Grain / noise overlay for depth */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Section label eyebrow */
+.eyebrow {
+  @apply font-mono text-[11px] font-semibold uppercase tracking-[0.32em];
+}
+
+.text-gradient-teal {
+  background: linear-gradient(100deg, #22d3ee 0%, #12b3a5 50%, #5eead4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-coral {
+  background: linear-gradient(100deg, #ff8a6b 0%, #ff5c4d 60%, #f97316 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-hover {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px -20px rgba(10, 26, 51, 0.35);
+}
