@@ -6,6 +6,9 @@ dist/
 dist-ssr/
 *.local
 
+# Deploy scratch worktree
+.deploy-tmp/
+
 # Logs
 logs
 *.log

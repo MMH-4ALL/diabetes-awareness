@@ -9,6 +9,20 @@ npm install
 npm run dev      # local dev server → http://localhost:5173
 npm run build    # production build → dist/
 npm run preview  # preview the production build
+npm run deploy   # build + publish to GitHub Pages (gh-pages branch)
+```
+
+## Live site
+
+**https://mmh-4all.github.io/diabetes-awareness/**
+
+Published from the `gh-pages` branch via GitHub Pages. The `main` branch holds the
+source; `gh-pages` holds the compiled `dist/` output.
+
+To publish a change:
+
+```bash
+npm run deploy
 ```
 
 ## Tech stack
@@ -40,4 +54,5 @@ npm run preview  # preview the production build
 
 - Fully responsive (mobile-first grid), smooth scroll, scroll-reveal animations, hover micro-interactions
 - Accessible contrast ratios, semantic HTML, `prefers-reduced-motion` support
+- `base: './'` in `vite.config.js` so the build works from any Pages subpath
 - Educational resource — **not medical advice**.
