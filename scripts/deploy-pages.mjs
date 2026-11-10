@@ -51,8 +51,20 @@ try {
 
   console.log('\n\x1b[1m\x1b[36m▸ Publishing\x1b[0m')
   run('git add -A', tmp)
-  run('git commit -m "deploy: update GitHub Pages build"', tmp)
-  run('git push origin gh-pages', tmp)
+
+  const changes = execSync('git status --porcelain', {
+    cwd: tmp,
+    shell: process.platform === 'win32',
+  })
+    .toString()
+    .trim()
+
+  if (!changes) {
+    console.log('  (build output identical — nothing to publish)')
+  } else {
+    run('git commit -m "deploy: update GitHub Pages build"', tmp)
+    run('git push origin gh-pages', tmp)
+  }
 
   console.log(
     '\n\x1b[1m\x1b[32m✓ Deployed.\x1b[0m https://mmh-4all.github.io/diabetes-awareness/\n'
