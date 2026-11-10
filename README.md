@@ -25,6 +25,9 @@ To publish a change:
 npm run deploy
 ```
 
+> Want GitHub to auto-rebuild on every push instead? See
+> [`docs/github-actions-auto-deploy.md`](docs/github-actions-auto-deploy.md).
+
 ## Tech stack
 
 - **React 18 + Vite** — componentized, fast dev/build
